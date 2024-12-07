@@ -7,12 +7,12 @@ time_info: &time_info
 Dataset:
   root:
   batch_size: 1
-  shuffle: True
-  num_workers: 1
+  shuffle: False
+  num_workers: 0
   pin_memory: True
   persistent_workers: True
   train_raw_dir:
-  val_raw_dir: ["data/valid_demo"]
+  val_raw_dir: ["data/waymo_processed/scenario/validation"] # smart_format | valid_demo /home/haoweis/trajdata_smart/SMART/data/waymo_processed/scenario/validation
   test_raw_dir:
   TargetBuilder: WaymoTargetBuilder
   train_processed_dir:
@@ -23,7 +23,7 @@ Dataset:
 
 Trainer:
   strategy: ddp_find_unused_parameters_false
-  accelerator: "gpu"
+  accelerator: "cpu"
   devices: 1
   max_epochs: 32
   save_ckpt_path: 
